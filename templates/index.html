@@ -1,69 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CodeLens AI — Code Error Scanner</title>
-  <meta name="description" content="AI-style code analysis for C, C++, Java, Python and JavaScript.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta name="description" content="Dynamic code analysis and execution for C, C++, Java, Python and JavaScript.">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
-  <header class="topbar">
-    <div class="brand"><span class="brand-mark">&lt;/&gt;</span><div><strong>CodeLens <span>AI</span></strong><small>Understand your code. Fix your errors.</small></div></div>
-    <div class="top-status"><span class="pulse"></span> Static analysis online</div>
-  </header>
-
-  <main class="container">
-    <section class="hero">
-      <div>
-        <p class="eyebrow">DEVELOPER INTELLIGENCE</p>
-        <h1>See what your code<br><span>is really doing.</span></h1>
-        <p class="hero-copy">Scan source code for syntax, logical, runtime, semantic and quality issues — then get a simple explanation and a practical fix.</p>
-      </div>
-      <div class="hero-chip"><b>5</b><span>languages<br>supported</span></div>
-    </section>
-
-    <section class="workspace">
-      <div class="editor-panel panel">
-        <div class="panel-head">
-          <div><span class="panel-label">SOURCE CODE</span><span id="fileLabel">main.py</span></div>
-          <div class="controls"><select id="language"><option value="python">Python</option><option value="c">C</option><option value="cpp">C++</option><option value="java">Java</option><option value="javascript">JavaScript</option></select><button id="clearBtn" class="ghost">Clear</button></div>
-        </div>
-        <div class="editor-wrap"><div id="lineNumbers" class="line-numbers">1</div><textarea id="code" spellcheck="false" aria-label="Code editor">def calculate_total(price, quantity):
-    total = price * quantity
-    if quantity > 0:
-        print("Total:", total)
-    return total
-
-price = int(input("Price: "))
-quantity = int(input("Quantity: "))
-print(calculate_total(price, quantity))</textarea></div>
-        <div class="editor-foot"><span>Ctrl + Enter to scan</span><span id="charCount">0 chars</span></div>
-      </div>
-      <div class="scan-panel">
-        <button id="scanBtn" class="scan-btn"><span>Scan Code</span><b>⌘</b></button>
-        <div class="scan-note"><span>✓</span> Code is analyzed locally on the server. It is not executed.</div>
-      </div>
-    </section>
-
-    <section id="results" class="results hidden">
-      <div class="results-head"><div><p class="eyebrow">ANALYSIS REPORT</p><h2 id="resultTitle">Scan complete</h2></div><div id="overallBadge" class="overall-badge">READY</div></div>
-      <div class="summary-grid">
-        <div class="metric"><span>Syntax</span><strong id="syntaxCount">0</strong><small>issues</small></div>
-        <div class="metric"><span>Logic</span><strong id="logicCount">0</strong><small>issues</small></div>
-        <div class="metric"><span>Runtime</span><strong id="runtimeCount">0</strong><small>issues</small></div>
-        <div class="metric"><span>Semantic / Type</span><strong id="semanticCount">0</strong><small>issues</small></div>
-        <div class="metric"><span>Warnings</span><strong id="warningCount">0</strong><small>quality</small></div>
-      </div>
-      <div id="issues" class="issues"></div>
-      <div class="final-summary"><span class="summary-icon">!</span><div><b>Final error summary</b><p id="finalText">No analysis yet.</p></div></div>
-    </section>
-    <footer>CodeLens AI <span>•</span> Static analysis for learning and debugging</footer>
-  </main>
-  <script src="/static/app.js"></script>
-</body>
-</html>
+<header class="topbar"><div class="brand"><span class="brand-mark">&lt;/&gt;</span><div><strong>CodeLens <span>AI</span></strong><small>Understand your code. Fix your errors.</small></div></div><div class="top-status"><span class="pulse"></span> Scanner online</div></header>
+<main class="container">
+<section class="hero"><div><p class="eyebrow">DEVELOPER INTELLIGENCE</p><h1>Write. Scan. <span>Run.</span></h1><p class="hero-copy">Find syntax, logical, runtime, semantic and code-quality issues, then run correct code and see its real output instantly.</p></div><div class="hero-chip"><b>5</b><span>languages<br>supported</span></div></section>
+<section class="workspace">
+<div class="editor-panel panel">
+<div class="panel-head"><div><span class="panel-label">SOURCE CODE</span><span id="fileLabel">main.py</span></div><div class="controls"><select id="language"><option value="python">Python</option><option value="c">C</option><option value="cpp">C++</option><option value="java">Java</option><option value="javascript">JavaScript</option></select><button id="exampleBtn" class="ghost">Example</button><button id="clearBtn" class="ghost">Clear</button></div></div>
+<div class="editor-wrap"><div id="lineNumbers" class="line-numbers">1</div><textarea id="code" spellcheck="false" aria-label="Code editor"></textarea></div>
+<div class="editor-foot"><span>Ctrl + Enter to scan</span><span id="charCount">0 chars</span></div></div>
+<div class="scan-panel"><button id="scanBtn" class="scan-btn"><span>Scan Code</span><b>ANALYZE</b></button><button id="runBtn" class="run-btn"><span>▶ Run Code</span><b>EXECUTE</b></button><div class="scan-note"><span>✓</span> Analysis is static. Code execution is isolated.</div></div>
+</section>
+<section id="outputPanel" class="output-panel hidden"><div class="output-head"><div><p class="eyebrow">PROGRAM OUTPUT</p><h2 id="outputTitle">Ready to run</h2></div><span id="runStatus" class="run-status">IDLE</span></div><div class="stdin-row"><label for="stdin">INPUT / STDIN</label><input id="stdin" placeholder="Optional input, e.g. 10&#10;5"></div><pre id="outputBox">Click Run Code to see the program output here.</pre></section>
+<section id="results" class="results hidden"><div class="results-head"><div><p class="eyebrow">ANALYSIS REPORT</p><h2 id="resultTitle">Scan complete</h2></div><div id="overallBadge" class="overall-badge">READY</div></div><div class="summary-grid"><div class="metric"><span>Syntax</span><strong id="syntaxCount">0</strong><small>issues</small></div><div class="metric"><span>Logic</span><strong id="logicCount">0</strong><small>issues</small></div><div class="metric"><span>Runtime</span><strong id="runtimeCount">0</strong><small>issues</small></div><div class="metric"><span>Semantic / Type</span><strong id="semanticCount">0</strong><small>issues</small></div><div class="metric"><span>Warnings</span><strong id="warningCount">0</strong><small>quality</small></div></div><div id="issues" class="issues"></div><div class="final-summary"><span class="summary-icon">!</span><div><b>Final error summary</b><p id="finalText">No analysis yet.</p></div></div></section>
+<footer>CodeLens AI <span>•</span> Dynamic code scanning and execution</footer></main>
+<script src="/static/app.js"></script></body></html>
